@@ -125,6 +125,43 @@ h2{margin:0 0 6px;font-size:clamp(22px,3.6vw,28px);line-height:1.25;font-weight:
 .fase p{margin:0;color:var(--muted);font-size:15px}
 .fase li:first-child{border-color:var(--soft)}
 footer{padding:32px 0 48px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+/* denah */
+.plan-box{background:#0E1013;border:1px solid var(--line);border-radius:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.plan-box svg{display:block;width:100%;min-width:860px;height:auto}
+.geser{display:none;margin:8px 0 0;font-size:13px;color:var(--muted)}
+@media (max-width:900px){.geser{display:block}}
+.plan text{font-family:var(--mono)}
+.plan .zone{font-size:12px;letter-spacing:.08em;fill:#7E878F}
+.plan .mk circle{stroke-width:2}
+.plan .mk text{font-size:12px;font-weight:500;text-anchor:middle;dominant-baseline:central}
+.mk-o circle{fill:#2A1F17;stroke:#E8772E} .mk-o text{fill:#F2A26A}
+.mk-b circle{fill:#16232D;stroke:#4FA3DC} .mk-b text{fill:#8CCBF5}
+.mk-g circle{fill:#20262B;stroke:#A7AFB6} .mk-g text{fill:#ECEEF0}
+.plan .eq{fill:#20262B;stroke:#8A939B;stroke-width:1.5}
+.plan .wtr{fill:#4FA3DC;fill-opacity:.18;stroke:#4FA3DC;stroke-width:1.5}
+.keys{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:8px 20px;font-size:15px}
+.keys li{display:flex;gap:10px;align-items:baseline}
+.keys .k{flex:none;width:30px;height:24px;display:inline-flex;align-items:center;justify-content:center;border:1.5px solid var(--line-2);border-radius:12px;font-family:var(--mono);font-size:12px}
+.keys .k.o{border-color:var(--berat);color:var(--berat-ink);background:var(--berat-bg)}
+.keys .k.b{border-color:var(--suhu);color:var(--suhu-ink);background:var(--suhu-bg)}
+.keys .k.f{border-style:dashed;color:var(--muted)}
+/* alat */
+.alat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(270px,100%),1fr));gap:12px}
+.alat{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
+.ill{display:block;width:100%;height:auto;background:#15181B;border-bottom:1px solid var(--line)}
+.ill .s{fill:none;stroke:#8A939B;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.ill .f{fill:#20262B;stroke:#C9CED3;stroke-width:1.5;stroke-linejoin:round}
+.ill .fo{fill:#2A1F17;stroke:#E8772E;stroke-width:1.5}
+.ill .fb{fill:#16232D;stroke:#4FA3DC;stroke-width:1.5}
+.ill .so{fill:none;stroke:#E8772E;stroke-width:1.5;stroke-linecap:round}
+.ill .sb{fill:none;stroke:#4FA3DC;stroke-width:1.5;stroke-linecap:round}
+.ill .wt{fill:#4FA3DC;fill-opacity:.16}
+.ill text{font-family:var(--mono);font-size:10px}
+.ill .to{fill:#F2A26A} .ill .tb{fill:#8CCBF5} .ill .tw{fill:#ECEEF0}
+.alat figcaption{padding:16px 18px 18px;display:flex;flex-direction:column;gap:4px}
+.alat figcaption b{font-size:17px;font-weight:600}
+.alat .di{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.04em}
+.alat figcaption p{margin:4px 0 0;font-size:15px;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -160,6 +197,238 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line);color:var(--muted);f
     <li class="st mutu-berat"><span class="no">09</span><h3>Timbang &amp; kelas</h3><p class="alat">Timbangan karkas + lampu kelas berat</p><p class="ket">Di sini kelihatan: dari ayam hidup jadi berapa kilo</p><div class="badges"><span class="badge b-berat">BERAT</span></div></li>
     <li class="st"><span class="no">10</span><h3>Potong &amp; label</h3><p class="alat">Mal potong + printer label</p><p class="ket">Berat, tanggal, kode batch. Komplain bisa dilacak sampai pemasok</p><div class="badges"><span class="badge b-berat">BERAT</span></div></li>
   </ol>
+</section>
+
+<section aria-labelledby="s-denah">
+  <h2 id="s-denah">Seperti ini kalau dipasang di ruang potong</h2>
+  <p class="lead">Contoh denah ruang potong. Area kotor dan area bersih dipisah dinding, seperti yang disyaratkan untuk rumah potong unggas. Nomor menunjukkan letak alat, titik oranye menunjukkan jalan ayam. Denah sebenarnya kami sesuaikan setelah melihat ruangan Ibu.</p>
+  <div class="plan-box">
+  <svg class="plan" viewBox="0 0 1000 660" role="img" aria-label="Denah contoh ruang potong ayam dengan letak alat bernomor 01 sampai 10, dari truk ayam hidup di kiri sampai truk pengiriman di bawah">
+    <defs>
+      <pattern id="crate" width="26" height="20" patternUnits="userSpaceOnUse"><rect x="2" y="2" width="22" height="16" rx="2" fill="#20262B" stroke="#5A636B"/></pattern>
+      <pattern id="rack" width="200" height="26" patternUnits="userSpaceOnUse"><rect x="0" y="4" width="200" height="16" fill="#1A2836" stroke="#3E5A72"/></pattern>
+      <pattern id="ice" width="22" height="16" patternUnits="userSpaceOnUse"><rect x="4" y="4" width="8" height="7" rx="1" fill="none" stroke="#8CCBF5" stroke-opacity=".6"/></pattern>
+    </defs>
+    <!-- zona -->
+    <rect x="102" y="62" width="418" height="496" fill="#1A1D20"/>
+    <rect x="522" y="62" width="436" height="336" fill="#17212A"/>
+    <rect x="522" y="402" width="236" height="156" fill="#142030"/>
+    <rect x="762" y="402" width="196" height="156" fill="#1C211E"/>
+    <!-- dinding -->
+    <path d="M100 60 H960 V560 H660 M600 560 H100 V200 M100 120 V60" fill="none" stroke="#C9CED3" stroke-width="4"/>
+    <path d="M520 60 V262 M520 298 V560 M520 400 H540 M580 400 H840 M880 400 H960 M760 400 V560" fill="none" stroke="#C9CED3" stroke-width="3"/>
+    <text class="zone" x="118" y="544">AREA KOTOR</text>
+    <text class="zone" x="538" y="384">AREA BERSIH</text>
+    <text class="zone" x="594" y="424">COLD STORAGE −18 °C</text>
+    <text class="zone" x="778" y="424">RUANG KONTROL</text>
+    <text class="zone" x="512" y="318" text-anchor="end">lubang</text>
+    <text class="zone" x="512" y="332" text-anchor="end">serah</text>
+    <!-- truk -->
+    <rect x="24" y="126" width="70" height="68" rx="3" class="eq"/>
+    <rect x="4" y="138" width="20" height="44" rx="4" class="eq"/>
+    <text class="zone" x="8" y="222">TRUK</text><text class="zone" x="8" y="236">AYAM HIDUP</text>
+    <rect x="592" y="566" width="76" height="58" rx="3" class="eq"/>
+    <rect x="604" y="624" width="52" height="22" rx="4" class="eq"/>
+    <text class="zone" x="684" y="600">TRUK PENGIRIMAN</text>
+    <!-- peralatan -->
+    <rect x="140" y="132" width="70" height="48" rx="2" class="eq"/>
+    <path d="M140 156 H210 M175 132 V180" stroke="#5A636B" stroke-width="1"/>
+    <rect x="118" y="244" width="130" height="160" fill="url(#crate)"/>
+    <circle cx="130" cy="440" r="13" class="eq"/><path d="M130 440 l0 -10 M130 440 l9 5 M130 440 l-9 5" stroke="#8A939B" stroke-width="2"/>
+    <circle cx="276" cy="532" r="9" class="eq"/>
+    <rect x="288" y="300" width="24" height="170" rx="2" fill="#2B1F1F" stroke="#5A636B" stroke-width="1.5"/>
+    <circle cx="342" cy="372" r="6" fill="none" stroke="#B5615A" stroke-width="2"/><circle cx="342" cy="388" r="6" fill="#7BD88F"/>
+    <rect x="326" y="88" width="104" height="40" rx="3" class="wtr"/>
+    <circle cx="470" cy="170" r="18" class="eq"/><circle cx="470" cy="170" r="8" class="eq"/>
+    <circle cx="470" cy="222" r="18" class="eq"/><circle cx="470" cy="222" r="8" class="eq"/>
+    <rect x="560" y="264" width="140" height="32" rx="2" class="eq"/>
+    <rect x="572" y="270" width="22" height="20" rx="2" fill="none" stroke="#5A636B"/><rect x="666" y="270" width="22" height="20" rx="2" fill="none" stroke="#5A636B"/>
+    <rect x="730" y="258" width="140" height="44" rx="3" class="wtr"/>
+    <rect x="731" y="259" width="138" height="42" fill="url(#ice)"/>
+    <rect x="890" y="170" width="50" height="40" rx="2" class="eq"/>
+    <circle cx="902" cy="160" r="4" fill="#F2A26A"/><circle cx="915" cy="160" r="4" fill="none" stroke="#F2A26A"/><circle cx="928" cy="160" r="4" fill="none" stroke="#F2A26A"/>
+    <rect x="570" y="104" width="290" height="40" rx="2" class="eq"/>
+    <rect x="578" y="110" width="26" height="28" rx="2" fill="none" stroke="#E8772E"/>
+    <rect x="540" y="438" width="200" height="104" fill="url(#rack)"/>
+    <rect x="800" y="470" width="140" height="30" rx="2" class="eq"/>
+    <path d="M800 405 H900" stroke="#4FA3DC" stroke-width="5"/>
+    <rect x="774" y="512" width="26" height="22" rx="2" fill="#20262B" stroke="#C9CED3" stroke-width="1.5"/>
+    <!-- rel gantung -->
+    <path d="M300 500 V110 H470 V280" fill="none" stroke="#5A636B" stroke-width="3"/>
+    <path d="M300 500 V110 H470 V280" fill="none" stroke="#8A939B" stroke-width="8" stroke-dasharray="1 11"/>
+    <!-- jalan ayam -->
+    <path id="alur" d="M90 160 H175 V500 H300 V110 H470 V280 H915 V124 H545 V470 H630 V596" fill="none" stroke="#ECEEF0" stroke-opacity=".35" stroke-width="2" stroke-dasharray="6 6"/>
+    <g fill="#F2A26A">
+      <circle r="5"><animateMotion dur="16s" repeatCount="indefinite" begin="0s"><mpath href="#alur"/></animateMotion></circle>
+      <circle r="5"><animateMotion dur="16s" repeatCount="indefinite" begin="-4s"><mpath href="#alur"/></animateMotion></circle>
+      <circle r="5"><animateMotion dur="16s" repeatCount="indefinite" begin="-8s"><mpath href="#alur"/></animateMotion></circle>
+      <circle r="5"><animateMotion dur="16s" repeatCount="indefinite" begin="-12s"><mpath href="#alur"/></animateMotion></circle>
+    </g>
+    <!-- penanda alat -->
+    <g class="mk mk-o"><circle cx="232" cy="134" r="14"/><text x="232" y="134">01</text></g>
+    <g class="mk mk-b"><circle cx="130" cy="476" r="14"/><text x="130" y="476">02</text></g>
+    <g class="mk mk-g"><circle cx="332" cy="504" r="14"/><text x="332" y="504">03</text></g>
+    <g class="mk mk-g"><circle cx="372" cy="380" r="14"/><text x="372" y="380">04</text></g>
+    <g class="mk mk-b"><circle cx="378" cy="152" r="14"/><text x="378" y="152">05</text></g>
+    <g class="mk mk-g"><circle cx="426" cy="196" r="14"/><text x="426" y="196">06</text></g>
+    <g class="mk mk-o"><circle cx="630" cy="318" r="14"/><text x="630" y="318">07</text></g>
+    <g class="mk mk-b"><circle cx="800" cy="236" r="14"/><text x="800" y="236">08</text></g>
+    <g class="mk mk-o"><circle cx="868" cy="192" r="14"/><text x="868" y="192">09</text></g>
+    <g class="mk mk-o"><circle cx="715" cy="168" r="14"/><text x="715" y="168">10</text></g>
+    <g class="mk mk-b"><circle cx="716" cy="470" r="14"/><text x="716" y="470">F</text></g>
+    <g class="mk mk-g"><circle cx="820" cy="530" r="14"/><text x="820" y="530">K</text></g>
+    <g class="mk mk-g"><circle cx="920" cy="436" r="14"/><text x="920" y="436">L</text></g>
+  </svg>
+  </div>
+  <p class="geser">Geser denah ke samping untuk melihat seluruhnya.</p>
+  <ul class="keys">
+    <li><span class="k o">01</span>Timbangan duduk di pintu bongkar truk</li>
+    <li><span class="k b">02</span>Sensor suhu ruang + kipas di area tunggu</li>
+    <li><span class="k">03</span>Penghitung ekor di awal rel gantung</li>
+    <li><span class="k">04</span>Lampu + timer di jalur tiris darah</li>
+    <li><span class="k b">05</span>Termostat &amp; sensor di bak rendam</li>
+    <li><span class="k">06</span>Timer di mesin cabut bulu</li>
+    <li><span class="k o">07</span>Timbangan meja di meja jeroan</li>
+    <li><span class="k b">08</span>Sensor suhu di bak pendingin</li>
+    <li><span class="k o">09</span>Timbangan karkas + lampu kelas berat</li>
+    <li><span class="k o">10</span>Timbangan pak + printer label di meja potong</li>
+    <li><span class="k b">F</span>Sensor suhu cold storage</li>
+    <li><span class="k">K</span>Kotak penghubung + cadangan listrik</li>
+    <li><span class="k">L</span>Layar ruang produksi di dinding</li>
+    <li><span class="k f">· ·</span>Rel gantung: ayam pindah titik tanpa diangkat</li>
+  </ul>
+</section>
+
+<section aria-labelledby="s-alat">
+  <h2 id="s-alat">Alat yang dipasang</h2>
+  <p class="lead">Semuanya barang jadi yang dijual di pasaran, bukan alat rakitan coba-coba. Gambar di bawah ilustrasi; bentuk aslinya mengikuti merek yang dipilih bersama.</p>
+  <div class="alat-grid">
+    <figure class="alat">
+      <svg class="ill" viewBox="0 0 240 150" aria-hidden="true">
+        <path class="s" d="M10 128 H230"/>
+        <rect class="f" x="30" y="108" width="130" height="14" rx="2"/>
+        <path class="s" d="M38 122 v6 M152 122 v6"/>
+        <rect class="f" x="45" y="66" width="100" height="42" rx="3"/>
+        <path class="s" d="M60 70 v34 M75 70 v34 M90 70 v34 M105 70 v34 M120 70 v34 M135 70 v34"/>
+        <path class="s" d="M190 128 V64 M178 128 H202 M160 115 H190"/>
+        <rect class="f" x="166" y="34" width="48" height="30" rx="3"/>
+        <rect class="fo" x="172" y="40" width="36" height="14" rx="1"/>
+        <text class="to" x="190" y="51" text-anchor="middle">182,4</text>
+        <path class="sb" d="M184 26 Q190 20 196 26 M179 21 Q190 11 201 21"/>
+      </svg>
+      <figcaption><span class="di">TITIK 01</span><b>Timbangan duduk terhubung</b><p>Keranjang ayam hidup ditimbang, angkanya langsung terkirim. Tidak ada lagi nota tulis tangan.</p></figcaption>
+    </figure>
+    <figure class="alat">
+      <svg class="ill" viewBox="0 0 240 150" aria-hidden="true">
+        <path class="s" d="M10 128 H230 M26 120 v8 M214 120 v8"/>
+        <rect class="f" x="14" y="112" width="212" height="8" rx="1"/>
+        <rect class="f" x="26" y="94" width="90" height="18" rx="2"/>
+        <rect class="fo" x="48" y="98" width="46" height="10" rx="1"/>
+        <text class="to" x="71" y="106.5" text-anchor="middle" style="font-size:8px">0,512</text>
+        <rect class="f" x="32" y="88" width="78" height="6" rx="1"/>
+        <rect class="f" x="44" y="72" width="54" height="16" rx="4"/>
+        <rect x="60" y="76" width="22" height="8" fill="#ECEEF0"/>
+        <path class="so" d="M116 103 Q131 103 146 98"/>
+        <rect class="f" x="146" y="78" width="66" height="34" rx="5"/>
+        <path class="s" d="M156 79 H202"/>
+        <rect x="160" y="48" width="38" height="31" rx="1" fill="#ECEEF0"/>
+        <path d="M165 55 H192 M165 60 H186 M166 68 v7 M169 68 v7 M171 68 v7 M175 68 v7 M178 68 v7 M180 68 v7 M184 68 v7 M187 68 v7 M191 68 v7" stroke="#121417" stroke-width="1.2"/>
+      </svg>
+      <figcaption><span class="di">TITIK 07 · 10</span><b>Timbangan meja + printer label</b><p>Jeroan dan pak potongan ditimbang. Label keluar sendiri berisi berat, tanggal, dan kode batch.</p></figcaption>
+    </figure>
+    <figure class="alat">
+      <svg class="ill" viewBox="0 0 240 150" aria-hidden="true">
+        <path class="s" d="M10 128 H230"/>
+        <path class="f" d="M24 70 H170 V124 H24 Z"/>
+        <rect class="wt" x="25" y="80" width="144" height="43"/>
+        <path class="sb" d="M25 80 q9 -4 18 0 t18 0 t18 0 t18 0 t18 0 t18 0 t18 0 t18 0"/>
+        <path class="s" d="M40 116 l6 -6 l6 6 l6 -6 l6 6 l6 -6 l6 6 l6 -6 l6 6 l6 -6 l6 6"/>
+        <rect class="f" x="180" y="30" width="48" height="42" rx="4"/>
+        <rect class="fb" x="186" y="36" width="36" height="15" rx="1"/>
+        <text class="tb" x="204" y="47" text-anchor="middle">53,8°</text>
+        <circle class="f" cx="195" cy="61" r="3"/><circle class="f" cx="213" cy="61" r="3"/>
+        <path class="sb" d="M180 52 H150 V102"/>
+        <rect class="fb" x="147" y="98" width="6" height="18" rx="3"/>
+        <path class="sb" d="M198 22 Q204 16 210 22 M193 17 Q204 7 215 17"/>
+      </svg>
+      <figcaption><span class="di">TITIK 05</span><b>Termostat bak rendam</b><p>Menjaga air tetap di suhu yang disepakati. Kalau kepanasan atau kedinginan, alarm berbunyi.</p></figcaption>
+    </figure>
+    <figure class="alat">
+      <svg class="ill" viewBox="0 0 240 150" aria-hidden="true">
+        <path class="s" d="M10 128 H230"/>
+        <path class="f" d="M20 64 H140 V124 H20 Z"/>
+        <rect class="wt" x="21" y="74" width="118" height="49"/>
+        <path class="sb" d="M21 74 q7.4 -3 14.75 0 t14.75 0 t14.75 0 t14.75 0 t14.75 0 t14.75 0 t14.75 0 t14.75 0"/>
+        <path d="M32 84 h9 v8 h-9 z M52 96 h9 v8 h-9 z M70 82 h9 v8 h-9 z M44 108 h9 v8 h-9 z M84 102 h9 v8 h-9 z" fill="none" stroke="#8CCBF5" stroke-opacity=".7"/>
+        <rect class="f" x="96" y="38" width="36" height="24" rx="3"/>
+        <text class="tb" x="114" y="54" text-anchor="middle">1,6°</text>
+        <path class="sb" d="M114 62 V112"/>
+        <path class="sb" d="M108 30 Q114 24 120 30 M103 25 Q114 15 125 25"/>
+        <ellipse class="f" cx="192" cy="108" rx="34" ry="16"/>
+        <rect class="f" x="174" y="38" width="38" height="20" rx="4"/>
+        <text class="tw" x="193" y="52" text-anchor="middle">3,6°</text>
+        <path class="sb" d="M193 58 V100"/>
+      </svg>
+      <figcaption><span class="di">TITIK 08 · F</span><b>Sensor pendingin + termometer tusuk</b><p>Air pendingin dipantau terus. Daging dicek dengan tusukan, baru boleh dikemas kalau sudah di bawah 4 °C.</p></figcaption>
+    </figure>
+    <figure class="alat">
+      <svg class="ill" viewBox="0 0 240 150" aria-hidden="true">
+        <path class="s" d="M10 128 H230 M10 28 H172"/>
+        <path class="s" d="M32 28 v10 M72 28 v10 M112 28 v10 M152 28 v10"/>
+        <path class="f" d="M32 38 c-10 8 -12 30 0 42 c12 -12 10 -34 0 -42 z M72 38 c-10 8 -12 30 0 42 c12 -12 10 -34 0 -42 z M112 38 c-10 8 -12 30 0 42 c12 -12 10 -34 0 -42 z M152 38 c-10 8 -12 30 0 42 c12 -12 10 -34 0 -42 z"/>
+        <rect x="14" y="108" width="158" height="12" rx="2" fill="#2B1F1F" stroke="#5A636B" stroke-width="1.5"/>
+        <path class="s" d="M206 128 V54"/>
+        <rect x="194" y="24" width="24" height="13" rx="2" fill="none" stroke="#B5615A" stroke-width="1.5"/>
+        <rect x="194" y="40" width="24" height="13" rx="2" fill="#7BD88F"/>
+        <rect class="f" x="184" y="70" width="44" height="18" rx="2"/>
+        <text class="tw" x="206" y="82.5" text-anchor="middle">02:40</text>
+      </svg>
+      <figcaption><span class="di">TITIK 04</span><b>Lampu tiris + timer</b><p>Hijau berarti ayam sudah cukup lama ditiriskan dan boleh masuk bak rendam. Merah berarti tunggu dulu.</p></figcaption>
+    </figure>
+    <figure class="alat">
+      <svg class="ill" viewBox="0 0 240 150" aria-hidden="true">
+        <path class="s" d="M10 128 H230 M10 28 H230"/>
+        <path class="s" d="M45 28 v10 M115 28 v10 M185 28 v10"/>
+        <path class="f" d="M45 38 c-10 8 -12 30 0 42 c12 -12 10 -34 0 -42 z M115 38 c-10 8 -12 30 0 42 c12 -12 10 -34 0 -42 z M185 38 c-10 8 -12 30 0 42 c12 -12 10 -34 0 -42 z"/>
+        <path d="M86 60 H144" stroke="#8CCBF5" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <rect class="f" x="72" y="53" width="14" height="14" rx="2"/>
+        <rect class="f" x="144" y="53" width="14" height="14" rx="2"/>
+        <path class="s" d="M79 67 V128 M151 67 V96"/>
+        <rect class="f" x="150" y="96" width="72" height="24" rx="3"/>
+        <text class="tw" x="186" y="112" text-anchor="middle" style="font-size:13px">0642</text>
+      </svg>
+      <figcaption><span class="di">TITIK 03 · 06</span><b>Penghitung ekor</b><p>Sensor sinar di rel gantung menghitung setiap ayam yang lewat. Jumlah potong per jam langsung kelihatan.</p></figcaption>
+    </figure>
+    <figure class="alat">
+      <svg class="ill" viewBox="0 0 240 150" aria-hidden="true">
+        <path class="s" d="M10 128 H230"/>
+        <rect class="f" x="70" y="30" width="84" height="70" rx="5"/>
+        <circle cx="86" cy="44" r="3" fill="#7BD88F"/><circle cx="98" cy="44" r="3" fill="#8CCBF5"/><circle cx="110" cy="44" r="3" fill="#F2A26A"/>
+        <path class="s" d="M86 62 H138 M86 70 H138 M86 78 H138"/>
+        <path class="s" d="M144 30 V20"/>
+        <path class="sb" d="M138 17 Q144 11 150 17 M133 12 Q144 2 155 12"/>
+        <path class="so" d="M86 100 V128"/><path class="sb" d="M102 100 V128"/><path class="s" d="M118 100 V128"/>
+        <path class="s" d="M154 85 H176"/>
+        <rect class="f" x="176" y="70" width="44" height="34" rx="3"/>
+        <rect class="s" x="186" y="81" width="20" height="12"/><path class="s" d="M206 85 v4"/>
+      </svg>
+      <figcaption><span class="di">RUANG KONTROL · K</span><b>Kotak penghubung + cadangan listrik</b><p>Mengumpulkan angka dari semua alat. Tetap mencatat saat internet putus atau listrik padam sebentar.</p></figcaption>
+    </figure>
+    <figure class="alat">
+      <svg class="ill" viewBox="0 0 240 150" aria-hidden="true">
+        <path class="s" d="M10 128 H230"/>
+        <rect class="f" x="16" y="20" width="150" height="90" rx="4"/>
+        <rect class="s" x="26" y="30" width="40" height="22" rx="1"/><rect class="s" x="73" y="30" width="40" height="22" rx="1"/>
+        <rect class="fo" x="120" y="30" width="38" height="22" rx="1"/>
+        <path class="sb" d="M28 96 L50 92 L72 94 L94 80 L116 84 L138 76 L156 78"/>
+        <path class="s" d="M28 64 H90 M28 72 H76"/>
+        <rect class="f" x="184" y="44" width="42" height="80" rx="6"/>
+        <rect class="fo" x="189" y="56" width="32" height="16" rx="3"/>
+        <path class="s" d="M191 84 H219 M191 92 H213 M191 100 H217"/>
+      </svg>
+      <figcaption><span class="di">RUANG PRODUKSI · L</span><b>Layar dinding + HP pemilik</b><p>Mandor melihat suhu dan hitungan di layar. Pemilik dapat ringkasan dan pemberitahuan alarm di HP.</p></figcaption>
+    </figure>
+  </div>
 </section>
 
 <section aria-labelledby="s-alur">
@@ -251,5 +520,8 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line);color:var(--muted);f
   <div>RekaInsta · Gambaran awal untuk bahan diskusi. Angka di layar adalah contoh, bukan data usaha Ibu.</div>
 </footer>
 </div>
+<script>
+try{if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('svg.plan').forEach(function(s){s.pauseAnimations()})}}catch(e){}
+</script>
 </body>
 </html>
