@@ -145,6 +145,10 @@ h2{margin:0 0 6px;font-size:clamp(22px,3.6vw,28px);line-height:1.25;font-weight:
 .gabung{margin-top:12px;padding:18px 20px;background:var(--panel-2);border:1px solid var(--soft);border-radius:6px;display:flex;flex-direction:column;gap:6px}
 .gabung h3{margin:0;font-size:18px;font-weight:600}
 .gabung p{margin:0;color:var(--soft);font-size:15px}
+.gabung.saran{margin:0 0 24px;border-color:var(--berat);background:var(--berat-bg)}
+.gabung.saran .di{color:var(--berat-ink)}
+.gabung.saran h3{font-size:clamp(19px,3vw,22px)}
+h3.sub.isi{margin:0 0 12px;color:var(--soft)}
 .lanjut{margin:14px 0 0;font-size:15px;color:var(--muted);max-width:70ch}
 footer{padding:32px 0 48px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
 /* denah */
@@ -497,8 +501,14 @@ html.snap .v3d-bar,html.snap .v3d-hint{display:none}
 
 <section aria-labelledby="s-sederhana">
   <span class="kicker">PAKET SEDERHANA</span>
-  <h2 id="s-sederhana">Mau mulai kecil dulu? Cukup satu alat</h2>
-  <p class="lead">Kalau memasang semua titik terasa terlalu besar untuk sekarang, bisa mulai dari satu alat saja. Dua pilihan ini tidak mengubah alur kerja karyawan, dan alatnya tetap terpakai kalau nanti mau lanjut ke paket lengkap.</p>
+  <h2 id="s-sederhana">Mau mulai kecil dulu? Cukup satu meja cek karkas</h2>
+  <p class="lead">Kalau memasang semua titik terasa terlalu besar untuk sekarang, mulai dari satu meja saja: timbangan yang mencatat sendiri dan kamera yang memeriksa mutu ayam. Cara kerja karyawan tidak berubah, dan alatnya tetap terpakai kalau nanti mau lanjut ke paket lengkap.</p>
+  <div class="gabung saran">
+    <span class="di">YANG KAMI SARANKAN · A + B</span>
+    <h3>Meja cek karkas: ditimbang dan dicek sekaligus</h3>
+    <p>Timbangan di bawah, kamera di atas. Setiap karkas yang lewat langsung ditimbang dan dicek mutunya, jadi satu ayam dapat dua catatan: kelas beratnya dan status mutunya. Ditambah timbangan di tempat ayam datang, hasil karkas per truk kelihatan di HP Ibu.</p>
+  </div>
+  <h3 class="sub isi">Isi mejanya</h3>
   <div class="opsi-grid">
     <article class="opsi">
       <svg class="ill" viewBox="0 0 480 220" role="img" aria-label="Timbangan duduk dengan keranjang ayam, angka beratnya terkirim ke HP">
@@ -521,7 +531,7 @@ html.snap .v3d-bar,html.snap .v3d-hint{display:none}
         <path class="s" d="M384 154h60M384 166h44"/>
       </svg>
       <div class="opsi-body">
-        <span class="di">PILIHAN A</span>
+        <span class="di">BAGIAN A</span>
         <h3>Timbangan yang tercatat otomatis</h3>
         <p>Timbangan biasa diganti timbangan yang mengirim angkanya sendiri. Setiap kali menimbang, beratnya langsung tercatat lengkap dengan jam dan nomor truk. Tidak ada nota tulis tangan yang hilang atau salah tulis.</p>
         <ul>
@@ -533,7 +543,7 @@ html.snap .v3d-bar,html.snap .v3d-hint{display:none}
           <dt>Dipasang di</dt><dd>Titik 01 (ayam datang) dan titik 09 (karkas)</dd>
           <dt>Cara kerja</dt><dd>Sama seperti sekarang, cuma alat timbangnya yang berganti</dd>
           <dt>Mulai terasa</dt><dd>Sejak truk pertama ditimbang</dd>
-          <dt>Cocok kalau</dt><dd>Yang paling ingin Ibu tahu: kilo yang hilang larinya ke mana</dd>
+          <dt>Menjawab</dt><dd>Kilo yang hilang larinya ke mana</dd>
         </dl>
       </div>
     </article>
@@ -562,7 +572,7 @@ html.snap .v3d-bar,html.snap .v3d-hint{display:none}
         <path class="s" d="M417 170v34"/>
       </svg>
       <div class="opsi-body">
-        <span class="di">PILIHAN B</span>
+        <span class="di">BAGIAN B</span>
         <h3>Kamera cek mutu ayam</h3>
         <p>Kamera di atas meja memotret setiap karkas yang lewat, lalu menandai apakah ayam itu sesuai kriteria atau perlu dicek. Lampu di meja langsung menyala: biru berarti sesuai, oranye berarti sisihkan dulu.</p>
         <ul>
@@ -575,17 +585,12 @@ html.snap .v3d-bar,html.snap .v3d-hint{display:none}
           <dt>Dipasang di</dt><dd>Sesudah pendinginan, sebelum ditimbang dan dikemas (titik 08–09)</dd>
           <dt>Cara kerja</dt><dd>Karkas tetap lewat meja yang sama, kamera bekerja sendiri</dd>
           <dt>Mulai terasa</dt><dd>Setelah masa belajar kamera selesai</dd>
-          <dt>Cocok kalau</dt><dd>Sering ada komplain mutu, atau mau masuk ke restoran dan pasar swalayan</dd>
+          <dt>Menjawab</dt><dd>Ayam mana yang tidak sesuai, dan buktinya kalau ada komplain. Berguna juga untuk masuk ke restoran dan pasar swalayan</dd>
         </dl>
       </div>
     </article>
   </div>
-  <div class="gabung">
-    <span class="di">A + B</span>
-    <h3>Atau gabung keduanya jadi satu meja cek karkas</h3>
-    <p>Timbangan di bawah, kamera di atas. Setiap karkas yang lewat langsung ditimbang dan dicek sekaligus, jadi satu ayam dapat dua catatan: kelas beratnya dan status mutunya.</p>
-  </div>
-  <p class="lanjut">Mana pun yang dipilih, bisa disambung ke paket lengkap kapan saja. Alat yang sudah terpasang tetap dipakai, tidak ada yang dibuang.</p>
+  <p class="lanjut">Kalau mau lebih kecil lagi, A atau B bisa dipasang sendiri dulu. Meja ini juga bisa disambung ke paket lengkap kapan saja. Alat yang sudah terpasang tetap dipakai, tidak ada yang dibuang.</p>
 </section>
 
 <dialog id="v3d" aria-labelledby="v3d-nama">
