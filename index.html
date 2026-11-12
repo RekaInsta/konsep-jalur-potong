@@ -6,6 +6,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Jalur Potong Ayam Terpantau</title>
 <meta name="description" content="Gambaran konsep alat ukur dan layar pemantau untuk jalur potong ayam, dari ayam datang sampai potongan berlabel.">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -162,6 +163,29 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line);color:var(--muted);f
 .alat figcaption b{font-size:17px;font-weight:600}
 .alat .di{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.04em}
 .alat figcaption p{margin:4px 0 0;font-size:15px;color:var(--muted)}
+.alat img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;background:#15181B;border-bottom:1px solid var(--line)}
+.putar{margin-top:12px;align-self:flex-start;min-height:44px;padding:0 16px;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line-2);border-radius:22px;background:transparent;color:var(--ink);font:inherit;font-size:15px;cursor:pointer}
+.putar:hover{border-color:var(--soft);background:var(--panel-2)}
+.putar[hidden]{display:none}
+dialog#v3d{width:min(1100px,calc(100vw - 24px));max-width:none;max-height:calc(100dvh - 24px);padding:0;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);overflow:auto}
+dialog#v3d::backdrop{background:rgba(6,8,10,.82)}
+.v3d-stage{position:relative;height:min(62vh,560px);min-height:300px;background:radial-gradient(ellipse 70% 60% at 50% 42%,#222930 0%,#15181B 62%,#101214 100%)}
+.v3d-stage canvas{display:block;width:100%;height:100%;touch-action:none}
+.v3d-load{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-size:15px}
+.v3d-load[hidden]{display:none}
+.v3d-hint{position:absolute;left:14px;bottom:12px;font-size:13px;color:var(--muted);pointer-events:none}
+.v3d-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:12px 20px;padding:16px 18px 18px;border-top:1px solid var(--line)}
+.v3d-cap{flex:1 1 320px;display:flex;flex-direction:column;gap:2px}
+.v3d-cap .di{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.04em}
+.v3d-cap b{font-size:18px;font-weight:600}
+.v3d-cap p{margin:4px 0 0;color:var(--muted);font-size:15px}
+.v3d-nav{display:flex;gap:8px}
+.v3d-nav button{min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0 14px;border:1px solid var(--line-2);border-radius:22px;background:transparent;color:var(--ink);font:inherit;font-size:15px;cursor:pointer}
+.v3d-nav button:hover{background:var(--panel-2)}
+html.snap dialog#v3d{width:auto;border:0;border-radius:0;background:transparent}
+html.snap .v3d-stage{width:960px;height:600px;min-height:0}
+html.snap .v3d-bar,html.snap .v3d-hint{display:none}
+
 </style>
 </head>
 <body>
@@ -301,132 +325,39 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line);color:var(--muted);f
 
 <section aria-labelledby="s-alat">
   <h2 id="s-alat">Alat yang dipasang</h2>
-  <p class="lead">Semuanya barang jadi yang dijual di pasaran, bukan alat rakitan coba-coba. Gambar di bawah ilustrasi; bentuk aslinya mengikuti merek yang dipilih bersama.</p>
-  <div class="alat-grid">
+  <p class="lead">Semuanya barang jadi yang dijual di pasaran, bukan alat rakitan coba-coba. Gambar 3D di bawah adalah konsep; bentuk aslinya mengikuti merek yang dipilih bersama. Tekan <b>Putar 3D</b> untuk melihat dari segala sisi.</p>
+  <div class="alat-grid" id="alat-grid">
     <figure class="alat">
-      <svg class="ill" viewBox="0 0 240 150" aria-hidden="true">
-        <path class="s" d="M10 128 H230"/>
-        <rect class="f" x="30" y="108" width="130" height="14" rx="2"/>
-        <path class="s" d="M38 122 v6 M152 122 v6"/>
-        <rect class="f" x="45" y="66" width="100" height="42" rx="3"/>
-        <path class="s" d="M60 70 v34 M75 70 v34 M90 70 v34 M105 70 v34 M120 70 v34 M135 70 v34"/>
-        <path class="s" d="M190 128 V64 M178 128 H202 M160 115 H190"/>
-        <rect class="f" x="166" y="34" width="48" height="30" rx="3"/>
-        <rect class="fo" x="172" y="40" width="36" height="14" rx="1"/>
-        <text class="to" x="190" y="51" text-anchor="middle">182,4</text>
-        <path class="sb" d="M184 26 Q190 20 196 26 M179 21 Q190 11 201 21"/>
-      </svg>
-      <figcaption><span class="di">TITIK 01</span><b>Timbangan duduk terhubung</b><p>Keranjang ayam hidup ditimbang, angkanya langsung terkirim. Tidak ada lagi nota tulis tangan.</p></figcaption>
+      <img src="img/alat-1.webp" width="960" height="600" alt="Model 3D timbangan duduk dengan keranjang ayam dan layar angka" loading="lazy" decoding="async">
+      <figcaption><span class="di">TITIK 01</span><b>Timbangan duduk terhubung</b><p>Keranjang ayam hidup ditimbang, angkanya langsung terkirim. Tidak ada lagi nota tulis tangan.</p><button type="button" class="putar" data-i="0" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>Putar 3D</button></figcaption>
     </figure>
     <figure class="alat">
-      <svg class="ill" viewBox="0 0 240 150" aria-hidden="true">
-        <path class="s" d="M10 128 H230 M26 120 v8 M214 120 v8"/>
-        <rect class="f" x="14" y="112" width="212" height="8" rx="1"/>
-        <rect class="f" x="26" y="94" width="90" height="18" rx="2"/>
-        <rect class="fo" x="48" y="98" width="46" height="10" rx="1"/>
-        <text class="to" x="71" y="106.5" text-anchor="middle" style="font-size:8px">0,512</text>
-        <rect class="f" x="32" y="88" width="78" height="6" rx="1"/>
-        <rect class="f" x="44" y="72" width="54" height="16" rx="4"/>
-        <rect x="60" y="76" width="22" height="8" fill="#ECEEF0"/>
-        <path class="so" d="M116 103 Q131 103 146 98"/>
-        <rect class="f" x="146" y="78" width="66" height="34" rx="5"/>
-        <path class="s" d="M156 79 H202"/>
-        <rect x="160" y="48" width="38" height="31" rx="1" fill="#ECEEF0"/>
-        <path d="M165 55 H192 M165 60 H186 M166 68 v7 M169 68 v7 M171 68 v7 M175 68 v7 M178 68 v7 M180 68 v7 M184 68 v7 M187 68 v7 M191 68 v7" stroke="#121417" stroke-width="1.2"/>
-      </svg>
-      <figcaption><span class="di">TITIK 07 · 10</span><b>Timbangan meja + printer label</b><p>Jeroan dan pak potongan ditimbang. Label keluar sendiri berisi berat, tanggal, dan kode batch.</p></figcaption>
+      <img src="img/alat-2.webp" width="960" height="600" alt="Model 3D timbangan meja dengan pak ayam dan printer label" loading="lazy" decoding="async">
+      <figcaption><span class="di">TITIK 07 · 10</span><b>Timbangan meja + printer label</b><p>Jeroan dan pak potongan ditimbang. Label keluar sendiri berisi berat, tanggal, dan kode batch.</p><button type="button" class="putar" data-i="1" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>Putar 3D</button></figcaption>
     </figure>
     <figure class="alat">
-      <svg class="ill" viewBox="0 0 240 150" aria-hidden="true">
-        <path class="s" d="M10 128 H230"/>
-        <path class="f" d="M24 70 H170 V124 H24 Z"/>
-        <rect class="wt" x="25" y="80" width="144" height="43"/>
-        <path class="sb" d="M25 80 q9 -4 18 0 t18 0 t18 0 t18 0 t18 0 t18 0 t18 0 t18 0"/>
-        <path class="s" d="M40 116 l6 -6 l6 6 l6 -6 l6 6 l6 -6 l6 6 l6 -6 l6 6 l6 -6 l6 6"/>
-        <rect class="f" x="180" y="30" width="48" height="42" rx="4"/>
-        <rect class="fb" x="186" y="36" width="36" height="15" rx="1"/>
-        <text class="tb" x="204" y="47" text-anchor="middle">53,8°</text>
-        <circle class="f" cx="195" cy="61" r="3"/><circle class="f" cx="213" cy="61" r="3"/>
-        <path class="sb" d="M180 52 H150 V102"/>
-        <rect class="fb" x="147" y="98" width="6" height="18" rx="3"/>
-        <path class="sb" d="M198 22 Q204 16 210 22 M193 17 Q204 7 215 17"/>
-      </svg>
-      <figcaption><span class="di">TITIK 05</span><b>Termostat bak rendam</b><p>Menjaga air tetap di suhu yang disepakati. Kalau kepanasan atau kedinginan, alarm berbunyi.</p></figcaption>
+      <img src="img/alat-3.webp" width="960" height="600" alt="Model 3D bak rendam stainless dengan termostat dan sensor suhu" loading="lazy" decoding="async">
+      <figcaption><span class="di">TITIK 05</span><b>Termostat bak rendam</b><p>Menjaga air tetap di suhu yang disepakati. Kalau kepanasan atau kedinginan, alarm berbunyi.</p><button type="button" class="putar" data-i="2" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>Putar 3D</button></figcaption>
     </figure>
     <figure class="alat">
-      <svg class="ill" viewBox="0 0 240 150" aria-hidden="true">
-        <path class="s" d="M10 128 H230"/>
-        <path class="f" d="M20 64 H140 V124 H20 Z"/>
-        <rect class="wt" x="21" y="74" width="118" height="49"/>
-        <path class="sb" d="M21 74 q7.4 -3 14.75 0 t14.75 0 t14.75 0 t14.75 0 t14.75 0 t14.75 0 t14.75 0 t14.75 0"/>
-        <path d="M32 84 h9 v8 h-9 z M52 96 h9 v8 h-9 z M70 82 h9 v8 h-9 z M44 108 h9 v8 h-9 z M84 102 h9 v8 h-9 z" fill="none" stroke="#8CCBF5" stroke-opacity=".7"/>
-        <rect class="f" x="96" y="38" width="36" height="24" rx="3"/>
-        <text class="tb" x="114" y="54" text-anchor="middle">1,6°</text>
-        <path class="sb" d="M114 62 V112"/>
-        <path class="sb" d="M108 30 Q114 24 120 30 M103 25 Q114 15 125 25"/>
-        <ellipse class="f" cx="192" cy="108" rx="34" ry="16"/>
-        <rect class="f" x="174" y="38" width="38" height="20" rx="4"/>
-        <text class="tw" x="193" y="52" text-anchor="middle">3,6°</text>
-        <path class="sb" d="M193 58 V100"/>
-      </svg>
-      <figcaption><span class="di">TITIK 08 · F</span><b>Sensor pendingin + termometer tusuk</b><p>Air pendingin dipantau terus. Daging dicek dengan tusukan, baru boleh dikemas kalau sudah di bawah 4 °C.</p></figcaption>
+      <img src="img/alat-4.webp" width="960" height="600" alt="Model 3D bak pendingin berisi es dengan sensor, dan termometer tusuk di karkas" loading="lazy" decoding="async">
+      <figcaption><span class="di">TITIK 08 · F</span><b>Sensor pendingin + termometer tusuk</b><p>Air pendingin dipantau terus. Daging dicek dengan tusukan, baru boleh dikemas kalau sudah di bawah 4 °C.</p><button type="button" class="putar" data-i="3" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>Putar 3D</button></figcaption>
     </figure>
     <figure class="alat">
-      <svg class="ill" viewBox="0 0 240 150" aria-hidden="true">
-        <path class="s" d="M10 128 H230 M10 28 H172"/>
-        <path class="s" d="M32 28 v10 M72 28 v10 M112 28 v10 M152 28 v10"/>
-        <path class="f" d="M32 38 c-10 8 -12 30 0 42 c12 -12 10 -34 0 -42 z M72 38 c-10 8 -12 30 0 42 c12 -12 10 -34 0 -42 z M112 38 c-10 8 -12 30 0 42 c12 -12 10 -34 0 -42 z M152 38 c-10 8 -12 30 0 42 c12 -12 10 -34 0 -42 z"/>
-        <rect x="14" y="108" width="158" height="12" rx="2" fill="#2B1F1F" stroke="#5A636B" stroke-width="1.5"/>
-        <path class="s" d="M206 128 V54"/>
-        <rect x="194" y="24" width="24" height="13" rx="2" fill="none" stroke="#B5615A" stroke-width="1.5"/>
-        <rect x="194" y="40" width="24" height="13" rx="2" fill="#7BD88F"/>
-        <rect class="f" x="184" y="70" width="44" height="18" rx="2"/>
-        <text class="tw" x="206" y="82.5" text-anchor="middle">02:40</text>
-      </svg>
-      <figcaption><span class="di">TITIK 04</span><b>Lampu tiris + timer</b><p>Hijau berarti ayam sudah cukup lama ditiriskan dan boleh masuk bak rendam. Merah berarti tunggu dulu.</p></figcaption>
+      <img src="img/alat-5.webp" width="960" height="600" alt="Model 3D rel tiris darah dengan lampu hijau-merah dan timer" loading="lazy" decoding="async">
+      <figcaption><span class="di">TITIK 04</span><b>Lampu tiris + timer</b><p>Hijau berarti ayam sudah cukup lama ditiriskan dan boleh masuk bak rendam. Merah berarti tunggu dulu.</p><button type="button" class="putar" data-i="4" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>Putar 3D</button></figcaption>
     </figure>
     <figure class="alat">
-      <svg class="ill" viewBox="0 0 240 150" aria-hidden="true">
-        <path class="s" d="M10 128 H230 M10 28 H230"/>
-        <path class="s" d="M45 28 v10 M115 28 v10 M185 28 v10"/>
-        <path class="f" d="M45 38 c-10 8 -12 30 0 42 c12 -12 10 -34 0 -42 z M115 38 c-10 8 -12 30 0 42 c12 -12 10 -34 0 -42 z M185 38 c-10 8 -12 30 0 42 c12 -12 10 -34 0 -42 z"/>
-        <path d="M86 60 H144" stroke="#8CCBF5" stroke-width="1.5" stroke-dasharray="3 3"/>
-        <rect class="f" x="72" y="53" width="14" height="14" rx="2"/>
-        <rect class="f" x="144" y="53" width="14" height="14" rx="2"/>
-        <path class="s" d="M79 67 V128 M151 67 V96"/>
-        <rect class="f" x="150" y="96" width="72" height="24" rx="3"/>
-        <text class="tw" x="186" y="112" text-anchor="middle" style="font-size:13px">0642</text>
-      </svg>
-      <figcaption><span class="di">TITIK 03 · 06</span><b>Penghitung ekor</b><p>Sensor sinar di rel gantung menghitung setiap ayam yang lewat. Jumlah potong per jam langsung kelihatan.</p></figcaption>
+      <img src="img/alat-6.webp" width="960" height="600" alt="Model 3D rel gantung dengan sensor sinar penghitung ekor dan layar hitungan" loading="lazy" decoding="async">
+      <figcaption><span class="di">TITIK 03 · 06</span><b>Penghitung ekor</b><p>Sensor sinar di rel gantung menghitung setiap ayam yang lewat. Jumlah potong per jam langsung kelihatan.</p><button type="button" class="putar" data-i="5" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>Putar 3D</button></figcaption>
     </figure>
     <figure class="alat">
-      <svg class="ill" viewBox="0 0 240 150" aria-hidden="true">
-        <path class="s" d="M10 128 H230"/>
-        <rect class="f" x="70" y="30" width="84" height="70" rx="5"/>
-        <circle cx="86" cy="44" r="3" fill="#7BD88F"/><circle cx="98" cy="44" r="3" fill="#8CCBF5"/><circle cx="110" cy="44" r="3" fill="#F2A26A"/>
-        <path class="s" d="M86 62 H138 M86 70 H138 M86 78 H138"/>
-        <path class="s" d="M144 30 V20"/>
-        <path class="sb" d="M138 17 Q144 11 150 17 M133 12 Q144 2 155 12"/>
-        <path class="so" d="M86 100 V128"/><path class="sb" d="M102 100 V128"/><path class="s" d="M118 100 V128"/>
-        <path class="s" d="M154 85 H176"/>
-        <rect class="f" x="176" y="70" width="44" height="34" rx="3"/>
-        <rect class="s" x="186" y="81" width="20" height="12"/><path class="s" d="M206 85 v4"/>
-      </svg>
-      <figcaption><span class="di">RUANG KONTROL · K</span><b>Kotak penghubung + cadangan listrik</b><p>Mengumpulkan angka dari semua alat. Tetap mencatat saat internet putus atau listrik padam sebentar.</p></figcaption>
+      <img src="img/alat-7.webp" width="960" height="600" alt="Model 3D kotak penghubung di dinding dengan cadangan listrik" loading="lazy" decoding="async">
+      <figcaption><span class="di">RUANG KONTROL · K</span><b>Kotak penghubung + cadangan listrik</b><p>Mengumpulkan angka dari semua alat. Tetap mencatat saat internet putus atau listrik padam sebentar.</p><button type="button" class="putar" data-i="6" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>Putar 3D</button></figcaption>
     </figure>
     <figure class="alat">
-      <svg class="ill" viewBox="0 0 240 150" aria-hidden="true">
-        <path class="s" d="M10 128 H230"/>
-        <rect class="f" x="16" y="20" width="150" height="90" rx="4"/>
-        <rect class="s" x="26" y="30" width="40" height="22" rx="1"/><rect class="s" x="73" y="30" width="40" height="22" rx="1"/>
-        <rect class="fo" x="120" y="30" width="38" height="22" rx="1"/>
-        <path class="sb" d="M28 96 L50 92 L72 94 L94 80 L116 84 L138 76 L156 78"/>
-        <path class="s" d="M28 64 H90 M28 72 H76"/>
-        <rect class="f" x="184" y="44" width="42" height="80" rx="6"/>
-        <rect class="fo" x="189" y="56" width="32" height="16" rx="3"/>
-        <path class="s" d="M191 84 H219 M191 92 H213 M191 100 H217"/>
-      </svg>
-      <figcaption><span class="di">RUANG PRODUKSI · L</span><b>Layar dinding + HP pemilik</b><p>Mandor melihat suhu dan hitungan di layar. Pemilik dapat ringkasan dan pemberitahuan alarm di HP.</p></figcaption>
+      <img src="img/alat-8.webp" width="960" height="600" alt="Model 3D layar dinding ruang produksi dan HP pemilik" loading="lazy" decoding="async">
+      <figcaption><span class="di">RUANG PRODUKSI · L</span><b>Layar dinding + HP pemilik</b><p>Mandor melihat suhu dan hitungan di layar. Pemilik dapat ringkasan dan pemberitahuan alarm di HP.</p><button type="button" class="putar" data-i="7" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>Putar 3D</button></figcaption>
     </figure>
   </div>
 </section>
@@ -516,6 +447,18 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line);color:var(--muted);f
   </ol>
 </section>
 
+<dialog id="v3d" aria-labelledby="v3d-nama">
+  <div class="v3d-stage"><canvas id="v3d-canvas" aria-label="Model 3D alat, bisa diputar dengan menggeser"></canvas><div class="v3d-load" id="v3d-load">Menyiapkan model 3D…</div><div class="v3d-hint">Geser untuk memutar</div></div>
+  <div class="v3d-bar">
+    <div class="v3d-cap" aria-live="polite"><span class="di" id="v3d-di"></span><b id="v3d-nama"></b><p id="v3d-ket"></p></div>
+    <div class="v3d-nav">
+      <button type="button" id="v3d-prev" aria-label="Alat sebelumnya"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+      <button type="button" id="v3d-next" aria-label="Alat berikutnya"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      <button type="button" id="v3d-tutup" class="tutup">Tutup</button>
+    </div>
+  </div>
+</dialog>
+
 <footer>
   <div>RekaInsta · Gambaran awal untuk bahan diskusi. Angka di layar adalah contoh, bukan data usaha Ibu.</div>
 </footer>
@@ -523,5 +466,6 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line);color:var(--muted);f
 <script>
 try{if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('svg.plan').forEach(function(s){s.pauseAnimations()})}}catch(e){}
 </script>
+<script type="module" src="./alat3d.js"></script>
 </body>
 </html>
