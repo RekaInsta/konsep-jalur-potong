@@ -146,6 +146,21 @@ footer{padding:32px 0 48px;border-top:1px solid var(--line);color:var(--muted);f
 .keys .k.o{border-color:var(--berat);color:var(--berat-ink);background:var(--berat-bg)}
 .keys .k.b{border-color:var(--suhu);color:var(--suhu-ink);background:var(--suhu-bg)}
 .keys .k.f{border-style:dashed;color:var(--muted)}
+
+.d3{position:relative;width:100%;aspect-ratio:16/9;min-height:420px;max-height:680px;margin-bottom:28px;background:radial-gradient(ellipse 75% 70% at 50% 45%,#1C2227 0%,#111316 70%,#0E1013 100%);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+@media (max-width:640px){.d3{aspect-ratio:auto;height:480px;min-height:0}}
+.d3-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .6s}
+.d3 canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .6s;touch-action:none}
+.d3.live canvas{opacity:1}.d3.live .d3-poster{opacity:0}
+.d3-ctl{position:absolute;top:12px;right:12px;display:flex;gap:8px}
+.d3-ctl button{min-width:44px;min-height:44px;padding:0 12px;border:1px solid var(--line-2);border-radius:22px;background:rgba(18,20,23,.75);color:var(--ink);font:inherit;font-size:16px;cursor:pointer;backdrop-filter:blur(4px)}
+.d3-ctl button:hover{background:var(--panel-2)}
+.d3.no3d .d3-ctl,.d3.no3d .d3-hint{display:none}
+.d3-hint{position:absolute;left:14px;bottom:12px;font-size:13px;color:var(--muted);pointer-events:none}
+h3.sub{margin:0 0 12px;font-size:17px;font-weight:600}
+html.snapd .d3{position:fixed;left:0;top:0;width:1600px;height:900px;max-height:none;aspect-ratio:auto;z-index:9999;border:0;border-radius:0;margin:0}
+html.snapd .d3-ctl,html.snapd .d3-hint{display:none}
+html.snapd{overflow:hidden}
 /* alat */
 .alat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(270px,100%),1fr));gap:12px}
 .alat{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
@@ -225,7 +240,18 @@ html.snap .v3d-bar,html.snap .v3d-hint{display:none}
 
 <section aria-labelledby="s-denah">
   <h2 id="s-denah">Seperti ini kalau dipasang di ruang potong</h2>
-  <p class="lead">Contoh denah ruang potong. Area kotor dan area bersih dipisah dinding, seperti yang disyaratkan untuk rumah potong unggas. Nomor menunjukkan letak alat, titik oranye menunjukkan jalan ayam. Denah sebenarnya kami sesuaikan setelah melihat ruangan Ibu.</p>
+  <p class="lead">Contoh tata letak ruang potong. Ayam berjalan di rel gantung, potongan bergerak dari meja ke cold storage, dan titik-titik yang terbang ke ruang kontrol adalah angka dari tiap alat yang terkirim sendiri. Area kotor dan area bersih dipisah dinding, seperti yang disyaratkan untuk rumah potong unggas. Tata letak sebenarnya kami sesuaikan setelah melihat ruangan Ibu.</p>
+  <div class="d3" id="d3">
+    <img class="d3-poster" src="img/denah-3d.webp" width="1600" height="900" alt="Gambaran 3D ruang potong ayam dengan alat terpasang di tiap titik" loading="lazy" decoding="async">
+    <canvas id="d3-canvas" aria-label="Ruang potong 3D beranimasi, bisa diputar dengan menggeser"></canvas>
+    <div class="d3-ctl">
+      <button type="button" id="d3-minus" aria-label="Perkecil">−</button>
+      <button type="button" id="d3-plus" aria-label="Perbesar">+</button>
+      <button type="button" id="d3-pause" aria-pressed="false">Jeda</button>
+    </div>
+    <div class="d3-hint">Geser untuk memutar ruangan</div>
+  </div>
+  <h3 class="sub">Blueprint denah</h3>
   <div class="plan-box">
   <svg class="plan" viewBox="0 0 1000 660" role="img" aria-label="Denah contoh ruang potong ayam dengan letak alat bernomor 01 sampai 10, dari truk ayam hidup di kiri sampai truk pengiriman di bawah">
     <defs>
@@ -467,5 +493,6 @@ html.snap .v3d-bar,html.snap .v3d-hint{display:none}
 try{if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('svg.plan').forEach(function(s){s.pauseAnimations()})}}catch(e){}
 </script>
 <script type="module" src="./alat3d.js"></script>
+<script type="module" src="./denah3d.js"></script>
 </body>
 </html>
