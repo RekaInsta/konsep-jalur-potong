@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Jalur Potong Ayam Terpantau</title>
+<meta name="description" content="Gambaran konsep alat ukur dan layar pemantau untuk jalur potong ayam, dari ayam datang sampai potongan berlabel.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#121417; --grid:#1A1E22; --panel:#1B1F23; --panel-2:#20262B; --line:#2C3238; --line-2:#5A636B;
+  --ink:#ECEEF0; --muted:#A7AFB6; --soft:#C9CED3;
+  --berat:#E8772E; --berat-ink:#F2A26A; --berat-bg:#2A1F17;
+  --suhu:#4FA3DC; --suhu-ink:#8CCBF5; --suhu-bg:#1F262C;
+  --mono:'IBM Plex Mono', ui-monospace, Consolas, monospace;
+  --sans:'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background-color:var(--ground);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:32px 32px;color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55}
+.wrap{max-width:1240px;margin:0 auto;padding:0 16px}
+@media (min-width:720px){.wrap{padding:0 40px}}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;border-bottom:1px solid var(--line)}
+.brand{font-weight:600;letter-spacing:.02em}
+.tag{display:inline-block;padding:2px 10px;border:1px dashed var(--line-2);border-radius:3px;font-size:13px;color:var(--muted)}
+.hero{padding:48px 0 32px}
+.hero h1{margin:0 0 14px;font-size:clamp(30px,6vw,48px);line-height:1.12;font-weight:600;letter-spacing:-.01em;max-width:18ch;text-wrap:balance}
+.hero p{margin:0;max-width:62ch;color:var(--muted);font-size:clamp(16px,2.2vw,18px);text-wrap:pretty}
+section{padding:36px 0}
+h2{margin:0 0 6px;font-size:clamp(22px,3.6vw,28px);line-height:1.25;font-weight:600}
+.lead{margin:0 0 22px;color:var(--muted);max-width:62ch}
+.legend{display:flex;flex-wrap:wrap;gap:10px 22px;margin:0 0 20px;font-size:14px;color:var(--muted)}
+.badge{display:inline-block;padding:0 9px;border:1px solid var(--line-2);border-radius:3px;color:var(--soft);font-family:var(--mono);font-size:12px;line-height:20px;letter-spacing:.06em;white-space:nowrap}
+.legend .badge{margin-right:8px}
+.b-berat{border-color:var(--berat);color:var(--berat-ink)}
+.b-suhu{border-color:var(--suhu);color:var(--suhu-ink)}
+.b-mutu{border-color:var(--ink);background:var(--ink);color:var(--ground)}
+.stations{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr));gap:12px;counter-reset:st}
+@media (min-width:1100px){.stations{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.st{position:relative;padding:18px 18px 16px;background:var(--panel);border:1px solid var(--line);border-radius:6px;display:flex;flex-direction:column;gap:4px}
+.st.mutu-suhu{background:var(--suhu-bg);border-color:var(--suhu)}
+.st.mutu-berat{background:#1F2420;border-color:var(--berat)}
+.st .no{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.st h3{margin:0 0 6px;font-size:19px;line-height:1.35;font-weight:600}
+.st .alat{margin:0}
+.st .ket{margin:0;color:var(--muted);font-size:15px}
+.st .badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:12px}
+.hub{display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width:860px){.hub{grid-template-columns:1fr auto 1fr auto 1fr;align-items:stretch}}
+.hub .node{display:flex;gap:14px;align-items:center;padding:18px 20px;background:var(--panel-2);border:1px solid var(--line-2);border-radius:6px}
+.hub .node svg{flex:none}
+.hub .node b{display:block;font-size:17px;font-weight:600}
+.hub .node span{color:var(--muted);font-size:15px}
+.hub .arrow{display:flex;align-items:center;justify-content:center;color:var(--line-2)}
+.hub .arrow svg{transform:rotate(90deg)}
+@media (min-width:860px){.hub .arrow svg{transform:none}}
+/* layar monitoring */
+.screen{background:#0C0E10;border:1px solid var(--line);border-radius:10px;padding:10px}
+.mon{background:var(--ground);border-radius:6px;padding:20px 16px;display:flex;flex-direction:column;gap:16px}
+@media (min-width:720px){.mon{padding:28px 28px}}
+.mon-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px}
+.mon-head .kecil{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--muted)}
+.mon-head .judul{font-size:clamp(18px,3vw,24px);font-weight:600;line-height:1.3}
+.jam{font-family:var(--mono);font-size:clamp(28px,5vw,38px);line-height:1;font-weight:500;text-align:right}
+.jam small{display:block;margin-top:6px;font-family:var(--sans);font-size:13px;color:var(--muted);font-weight:400}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:12px}
+.kpi{padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:6px;display:flex;flex-direction:column;gap:6px}
+.kpi .lbl{font-size:14px;color:var(--muted)}
+.kpi .val{font-family:var(--mono);font-size:32px;line-height:1.1;font-weight:500}
+.kpi .val small{font-size:18px;color:var(--muted)}
+.kpi .sub{font-size:13px;color:var(--muted)}
+.kpi .warn{color:var(--berat-ink)}
+.kpi.alarm{background:var(--berat-bg);border-color:var(--berat)}
+.kpi.alarm .lbl,.kpi.alarm .val{color:var(--berat-ink)}
+.kpi.alarm .sub.ink{color:var(--ink)}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--soft)}
+.two{display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width:980px){.two{grid-template-columns:1.25fr 1fr}}
+.pan{padding:18px 18px;background:var(--panel);border:1px solid var(--line);border-radius:6px;display:flex;flex-direction:column;gap:12px}
+.pan h3{margin:0;font-size:17px;font-weight:600}
+.pan-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px}
+.swatch{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.swatch i{width:18px;height:10px;background:var(--suhu);opacity:.3}
+.trow{display:grid;grid-template-columns:1fr auto;grid-template-areas:"nama nilai" "grafik status";gap:6px 14px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
+@media (min-width:640px){.trow{grid-template-columns:200px 120px minmax(0,1fr) 84px;grid-template-areas:"nama nilai grafik status"}}
+.trow .nama{grid-area:nama;font-size:15px}
+.trow .nama small{display:block;font-size:13px;color:var(--muted)}
+.trow .nilai{grid-area:nilai;font-family:var(--mono);font-size:24px;text-align:right}
+@media (min-width:640px){.trow .nilai{text-align:left}}
+.trow svg{grid-area:grafik;width:100%;height:36px;display:block}
+.trow .status{grid-area:status;display:flex;align-items:center;gap:8px;font-size:14px;justify-content:flex-end}
+@media (min-width:640px){.trow .status{justify-content:flex-start}}
+.dot{width:10px;height:10px;border-radius:5px;background:currentColor;flex:none}
+.aman{color:var(--suhu-ink)} .naik{color:var(--berat-ink)}
+.scale-row{display:flex;flex-direction:column;gap:6px}
+.scale-row .r{display:flex;justify-content:space-between;gap:12px;font-size:14px}
+.scale-row .r b{font-family:var(--mono);font-weight:400;white-space:nowrap}
+.sbar{height:10px;background:var(--line);border-radius:2px;overflow:hidden}
+.sbar i{display:block;height:100%;background:var(--soft)}
+.sbar i.o{background:var(--berat)}
+.temuan{margin-top:auto;padding:14px 16px;border:1px solid var(--berat);border-radius:4px;font-size:14px}
+.temuan b{display:block;color:var(--berat-ink);font-weight:600}
+.temuan span{color:var(--soft)}
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:8px}
+.chip{min-height:44px;padding:0 10px;display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:4px;font-size:13px}
+.chip .dot{width:8px;height:8px}
+.chip .n{font-family:var(--mono);color:var(--muted)}
+.chip.cek{border-color:var(--berat);color:var(--berat-ink)}
+.chip.cek .n{color:var(--berat-ink)}
+.log{display:flex;flex-direction:column;gap:10px;font-size:14px}
+.log div{display:flex;gap:14px}
+.log time{font-family:var(--mono);color:var(--muted);flex:none}
+.log .baru time,.log .baru em{color:var(--berat-ink)}
+.log em{font-style:normal;color:var(--muted)}
+.catatan{margin:14px 0 0;font-size:14px;color:var(--muted)}
+/* tahapan */
+.fase{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:12px}
+.fase li{padding:20px;background:var(--panel);border:1px solid var(--line);border-radius:6px}
+.fase .k{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.fase h3{margin:4px 0 8px;font-size:19px;font-weight:600}
+.fase p{margin:0;color:var(--muted);font-size:15px}
+.fase li:first-child{border-color:var(--soft)}
+footer{padding:32px 0 48px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <span class="brand">RekaInsta</span>
+  <span class="tag">Gambaran konsep · angka contoh</span>
+</header>
+
+<div class="hero">
+  <h1>Jalur potong ayam yang mencatat dirinya sendiri</h1>
+  <p>Dari ayam hidup datang sampai potongan berlabel. Di setiap titik dipasang alat ukur yang mengirim angkanya sendiri, jadi tidak ada lagi catatan tulis tangan. Hasilnya kelihatan di layar ruang produksi dan di HP Ibu.</p>
+</div>
+
+<section aria-labelledby="s-jalur">
+  <h2 id="s-jalur">10 titik, dari ayam datang sampai berlabel</h2>
+  <p class="lead">Mesin tetap dibeli dari pembuat mesin lokal. Bagian kami: alat ukur di tiap titik, menyambungkan semuanya, dan layar pemantaunya.</p>
+  <div class="legend">
+    <span><span class="badge b-berat">BERAT</span>timbangan terhubung</span>
+    <span><span class="badge b-suhu">SUHU</span>sensor + alarm</span>
+    <span><span class="badge">HITUNG · WAKTU</span>penghitung &amp; timer</span>
+    <span><span class="badge b-mutu">TITIK MUTU</span>penentu kualitas ayam</span>
+  </div>
+  <ol class="stations">
+    <li class="st"><span class="no">01</span><h3>Ayam datang</h3><p class="alat">Timbangan duduk terhubung</p><p class="ket">Tablet: pemasok, jumlah ekor, ekor mati di jalan</p><div class="badges"><span class="badge b-berat">BERAT</span></div></li>
+    <li class="st"><span class="no">02</span><h3>Tunggu potong</h3><p class="alat">Sensor suhu &amp; lembap ruang</p><p class="ket">Kipas nyala sendiri kalau ruang terlalu panas, ayam tidak susut</p><div class="badges"><span class="badge b-suhu">SUHU</span></div></li>
+    <li class="st"><span class="no">03</span><h3>Sembelih halal</h3><p class="alat">Penghitung ekor otomatis</p><p class="ket">Sembelih tetap oleh juru sembelih halal</p><div class="badges"><span class="badge">HITUNG</span></div></li>
+    <li class="st"><span class="no">04</span><h3>Tiris darah</h3><p class="alat">Timer + lampu hijau/merah</p><p class="ket">Belum mati sempurna, belum boleh masuk bak rendam</p><div class="badges"><span class="badge">WAKTU</span></div></li>
+    <li class="st mutu-suhu"><span class="no">05</span><h3>Rendam air panas</h3><p class="alat">Termostat digital + sensor</p><p class="ket">Suhu air dijaga dalam rentang, alarm kalau kepanasan atau kedinginan</p><div class="badges"><span class="badge b-suhu">SUHU</span><span class="badge b-mutu">TITIK MUTU</span></div></li>
+    <li class="st"><span class="no">06</span><h3>Cabut bulu</h3><p class="alat">Mesin pencabut bulu</p><p class="ket">Timer putaran, catat ayam yang harus dicabut ulang</p><div class="badges"><span class="badge">WAKTU</span></div></li>
+    <li class="st"><span class="no">07</span><h3>Jeroan &amp; cuci</h3><p class="alat">Timbangan meja terhubung</p><p class="ket">Ati-ampela, ceker, kepala ikut ditimbang, karena itu juga uang</p><div class="badges"><span class="badge b-berat">BERAT</span></div></li>
+    <li class="st mutu-suhu"><span class="no">08</span><h3>Dinginkan</h3><p class="alat">Sensor suhu air pendingin</p><p class="ket">Termometer tusuk: daging harus di bawah 4 °C sebelum dikirim</p><div class="badges"><span class="badge b-suhu">SUHU</span><span class="badge b-mutu">TITIK MUTU</span></div></li>
+    <li class="st mutu-berat"><span class="no">09</span><h3>Timbang &amp; kelas</h3><p class="alat">Timbangan karkas + lampu kelas berat</p><p class="ket">Di sini kelihatan: dari ayam hidup jadi berapa kilo</p><div class="badges"><span class="badge b-berat">BERAT</span></div></li>
+    <li class="st"><span class="no">10</span><h3>Potong &amp; label</h3><p class="alat">Mal potong + printer label</p><p class="ket">Berat, tanggal, kode batch. Komplain bisa dilacak sampai pemasok</p><div class="badges"><span class="badge b-berat">BERAT</span></div></li>
+  </ol>
+</section>
+
+<section aria-labelledby="s-alur">
+  <h2 id="s-alur">Semua angka masuk sendiri</h2>
+  <p class="lead">Tidak ada yang diketik ulang. Kalau internet putus, alat tetap mencatat dan mengirim belakangan.</p>
+  <div class="hub">
+    <div class="node"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9CED3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h.01M11 10h.01M7 14h10"/></svg><div><b>Kotak penghubung</b><span>Di ruang produksi, menampung angka dari semua alat</span></div></div>
+    <div class="arrow" aria-hidden="true"><svg width="28" height="16" viewBox="0 0 28 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h22M18 2l6 6-6 6"/></svg></div>
+    <div class="node"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9CED3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/></svg><div><b>Layar ruang produksi</b><span>Suhu, hitungan ekor, berat. Alarm berbunyi di lantai</span></div></div>
+    <div class="arrow" aria-hidden="true"><svg width="28" height="16" viewBox="0 0 28 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h22M18 2l6 6-6 6"/></svg></div>
+    <div class="node"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9CED3" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg><div><b>HP Ibu</b><span>Hasil per batch, susut, laporan harian, pemberitahuan alarm</span></div></div>
+  </div>
+</section>
+
+<section aria-labelledby="s-layar">
+  <h2 id="s-layar">Seperti ini layar di ruang produksi</h2>
+  <p class="lead">Contoh tampilan waktu truk ketiga hari itu sedang dipotong. Semua angka di bawah hanya contoh.</p>
+  <div class="screen">
+  <div class="mon">
+    <div class="mon-head">
+      <div><div class="kecil">LAYAR PRODUKSI</div><div class="judul">Batch 03 hari ini · Truk ketiga</div></div>
+      <div class="jam">04:36<small>Kamis, 12 Nov</small></div>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><span class="lbl">Ekor terpotong batch ini</span><span class="val">642<small> / 1.000</small></span><div class="bar"><i style="width:64%"></i></div><span class="sub">Hari ini 2.642 dari 3.000 ekor</span></div>
+      <div class="kpi"><span class="lbl">Hasil karkas batch ini</span><span class="val">71,4%</span><span class="sub warn">Target 72,0% · kurang 0,6 poin</span><span class="sub">Berat karkas dibagi berat hidup</span></div>
+      <div class="kpi"><span class="lbl">Kecepatan potong</span><span class="val">428<small> ekor/jam</small></span><span class="sub">Dari penghitung di titik 03</span><span class="sub">Perkiraan batch selesai 05:30</span></div>
+      <div class="kpi alarm"><span class="lbl">Alarm aktif</span><span class="val">1</span><span class="sub ink">Air pendingin naik ke 2,4 °C</span><span class="sub">Tindakan: tambah es sekarang</span></div>
+    </div>
+    <div class="two">
+      <div class="pan">
+        <div class="pan-head"><h3>Suhu</h3><span class="swatch"><i></i>rentang aman · 60 menit terakhir</span></div>
+        <div>
+          <div class="trow"><div class="nama">Bak rendam · titik 05<small>aman 50–55 °C</small></div><div class="nilai">53,8 °C</div><svg viewBox="0 0 200 40" preserveAspectRatio="none" role="img" aria-label="Suhu bak rendam sempat naik lalu kembali aman"><rect x="0" y="14" width="200" height="14" fill="#4FA3DC" opacity=".18"/><polyline points="0,22 20,20 40,21 60,19 80,7 100,5 120,17 140,21 160,20 180,21 200,20" fill="none" stroke="#8CCBF5" stroke-width="2" vector-effect="non-scaling-stroke"/></svg><div class="status aman"><span class="dot"></span>Aman</div></div>
+          <div class="trow"><div class="nama">Air pendingin · titik 08<small>aman 0–2 °C</small></div><div class="nilai naik">2,4 °C</div><svg viewBox="0 0 200 40" preserveAspectRatio="none" role="img" aria-label="Suhu air pendingin naik melewati batas"><rect x="0" y="18" width="200" height="16" fill="#4FA3DC" opacity=".18"/><polyline points="0,28 20,28 40,27 60,28 80,27 100,26 120,24 140,21 160,17 180,13 200,11" fill="none" stroke="#F2A26A" stroke-width="2" vector-effect="non-scaling-stroke"/></svg><div class="status naik"><span class="dot"></span>Naik</div></div>
+          <div class="trow"><div class="nama">Daging keluar pendingin<small>aman di bawah 4 °C</small></div><div class="nilai">3,6 °C</div><svg viewBox="0 0 200 40" preserveAspectRatio="none" role="img" aria-label="Suhu daging stabil di bawah batas"><rect x="0" y="16" width="200" height="22" fill="#4FA3DC" opacity=".18"/><polyline points="0,26 20,25 40,27 60,26 80,25 100,26 120,24 140,23 160,22 180,22 200,21" fill="none" stroke="#8CCBF5" stroke-width="2" vector-effect="non-scaling-stroke"/></svg><div class="status aman"><span class="dot"></span>Aman</div></div>
+          <div class="trow"><div class="nama">Freezer gudang<small>aman −18 °C ke bawah</small></div><div class="nilai">−18,4 °C</div><svg viewBox="0 0 200 40" preserveAspectRatio="none" role="img" aria-label="Suhu freezer stabil"><rect x="0" y="14" width="200" height="24" fill="#4FA3DC" opacity=".18"/><polyline points="0,24 20,24 40,25 60,24 80,24 100,23 120,24 140,25 160,24 180,24 200,24" fill="none" stroke="#8CCBF5" stroke-width="2" vector-effect="non-scaling-stroke"/></svg><div class="status aman"><span class="dot"></span>Aman</div></div>
+        </div>
+      </div>
+      <div class="pan">
+        <h3>Timbangan 3 titik · batch ini</h3>
+        <div class="scale-row"><div class="r"><span>Ayam hidup · 642 ekor</span><b>1.155,6 kg</b></div><div class="sbar"><i style="width:100%"></i></div></div>
+        <div class="scale-row"><div class="r"><span>Karkas · titik 09</span><b>825,1 kg</b></div><div class="sbar"><i class="o" style="width:71.4%"></i></div></div>
+        <div class="scale-row"><div class="r"><span>Potongan &amp; pak · titik 10</span><b>812,4 kg</b></div><div class="sbar"><i class="o" style="width:70.3%"></i></div></div>
+        <div class="temuan"><b>Selisih karkas ke pak: 12,7 kg (1,5%)</b><span>Biasanya 0,8%. Cek meja potong: sisa potongan, kulit, atau timbangan pak.</span></div>
+      </div>
+    </div>
+    <div class="two">
+      <div class="pan">
+        <h3>Status titik</h3>
+        <div class="chips">
+          <div class="chip aman"><span class="dot"></span><span class="n">01</span>Datang</div>
+          <div class="chip aman"><span class="dot"></span><span class="n">02</span>Tunggu</div>
+          <div class="chip aman"><span class="dot"></span><span class="n">03</span>Sembelih</div>
+          <div class="chip aman"><span class="dot"></span><span class="n">04</span>Tiris</div>
+          <div class="chip aman"><span class="dot"></span><span class="n">05</span>Rendam</div>
+          <div class="chip aman"><span class="dot"></span><span class="n">06</span>Cabut bulu</div>
+          <div class="chip aman"><span class="dot"></span><span class="n">07</span>Jeroan</div>
+          <div class="chip cek"><span class="dot"></span><span class="n">08</span>Cek dingin</div>
+          <div class="chip aman"><span class="dot"></span><span class="n">09</span>Timbang</div>
+          <div class="chip aman"><span class="dot"></span><span class="n">10</span>Potong</div>
+        </div>
+      </div>
+      <div class="pan">
+        <h3>Catatan alarm hari ini</h3>
+        <div class="log">
+          <div class="baru"><time>04:31</time><span>Air pendingin 2,4 °C, lewat batas 2 °C. <em>Belum ditangani</em></span></div>
+          <div><time>04:12</time><span>Bak rendam 57,1 °C selama 3 menit. <em>Normal lagi 04:15</em></span></div>
+          <div><time>03:41</time><span>Truk ketiga masuk: 1.000 ekor, 1.800 kg. <em>Info</em></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <p class="catatan">Pemberitahuan yang sama juga masuk ke HP Ibu, jadi tetap tahu walau tidak sedang di tempat.</p>
+</section>
+
+<section aria-labelledby="s-tahap">
+  <h2 id="s-tahap">Dipasang bertahap, siap untuk kapasitas yang terus naik</h2>
+  <p class="lead">Mulai dari yang tidak mengubah cara kerja karyawan, lalu ditambah seiring jumlah ekor bertambah.</p>
+  <ol class="fase">
+    <li><span class="k">TAHAP 1</span><h3>Timbang &amp; suhu</h3><p>Timbangan terhubung di 3 titik, sensor suhu di bak rendam dan pendingin, printer label, layar pemantau. Dalam beberapa minggu sudah kelihatan susut terbesar di titik mana.</p></li>
+    <li><span class="k">TAHAP 2</span><h3>Alur lancar</h3><p>Suhu bak rendam dijaga otomatis, penghitung ekor dan lampu tiris darah, rel gantung supaya ayam pindah titik tanpa diangkat-angkat.</p></li>
+    <li><span class="k">TAHAP 3</span><h3>Potongan seragam</h3><p>Pemilahan berat karkas, mal atau mesin potong untuk ukuran sama, label per pelanggan, pemantauan suhu mobil boks.</p></li>
+  </ol>
+</section>
+
+<footer>
+  <div>RekaInsta · Gambaran awal untuk bahan diskusi. Angka di layar adalah contoh, bukan data usaha Ibu.</div>
+</footer>
+</div>
+</body>
+</html>
